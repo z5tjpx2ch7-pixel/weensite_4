@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heal the Earth, Heal Ourselves</title>
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Noto Sans KR',sans-serif;}
+  html {scroll-behavior:smooth;}
+  body {
+    background:#f5faf7;
+    color:#222;
+    overflow-x:hidden;
+  }
+
+  /* 상단 헤더 */
+  header {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(12px);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem 3rem; z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  header h1 {font-size:1.6rem; color:#15a684; font-weight:700;}
+  header nav a {
+    margin-left:1.8rem; text-decoration:none; color:#333;
+    font-weight:500; transition:0.2s;
+  }
+  header nav a:hover {color:#15a684;}
+
+  /* 섹션 공통 */
+  section {
+    min-height:100vh;
+    padding:8rem 8% 5rem;
+    display:flex; flex-direction:column;
+    justify-content:center;
+  }
+  h3 {
+    font-size:2.2rem;
+    color:#15a684;
+    margin-bottom:1rem;
+  }
+  p {font-size:1.15rem; line-height:1.8;}
+
+  /* 메인 화면 */
+  .main {
+    background:url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    position:relative;
+    color:white;
+    text-shadow:0 3px 8px rgba(0,0,0,0.4);
+  }
+  .main::after {
+    content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.4);
+  }
+  .main-content {
+    position:relative; z-index:2;
+    max-width:700px;
+    margin-top:6rem;
+  }
+  .main h2 {
+    font-size:3rem;
+    margin-bottom:1rem;
+  }
+  .btn {
+    background:#15a684; border:none;
+    padding:0.9rem 1.7rem; color:white;
+    border-radius:30px; font-size:1.1rem;
+    margin-top:1.5rem; cursor:pointer; transition:0.3s;
+  }
+  .btn:hover {background:#118c6f;}
+
+  /* 카드 스타일 */
+  .content-box {
+    background:white;
+    border-radius:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.05);
+    padding:2rem;
+    margin:1.5rem 0;
+    animation:fadeInUp 0.8s ease;
+  }
+
+  /* 해결 아이디어 */
+  .data-board {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem; margin-top:2rem;
+  }
+  .data-item {
+    background:#e9f9f2; border-radius:15px; padding:1.5rem;
+    text-align:center; font-weight:500;
+    transition:0.3s; box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  .data-item:hover {background:#d7f6eb;}
+
+  /* 보건학적 접근 */
+  .health-cards {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1.2rem; margin-top:2rem;
+  }
+  .card {
+    background:#f2fcf7;
+    border-radius:15px; padding:1.5rem;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  /* 참여 섹션 */
+  .action {
+    background:linear-gradient(to bottom right, #eafff5, #f8fffe);
+    text-align:center;
+  }
+  .action h3 {margin-bottom:1rem;}
+  .action-cards {
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:1rem; margin:2rem 0;
+  }
+  .action-cards .card {
+    flex:1 1 250px;
+    text-align:center;
+    background:white;
+    transition:0.3s;
+  }
+  .action-cards .card:hover {background:#e7fdf1;}
+
+  footer {
+    background:#15a684; color:white;
+    text-align:center; padding:2rem; font-size:0.95rem;
+  }
+
+  /* 후원 팝업 */
+  #donateModal {
+    display:none;
+    position:fixed; top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center; align-items:center;
+    z-index:20;
+  }
+  .modal-content {
+    background:white; border-radius:20px;
+    padding:2rem; text-align:center;
+    max-width:400px; box-shadow:0 0 20px rgba(0,0,0,0.25);
+  }
+  .modal-content input {
+    width:80%; padding:0.6rem;
+    border:1px solid #ccc; border-radius:10px;
+    margin-top:0.5rem;
+  }
+
+  /* 애니메이션 */
+  @keyframes fadeInUp {
+    from {opacity:0; transform:translateY(40px);}
+    to {opacity:1; transform:translateY(0);}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Heal the Earth</h1>
+  <nav>
+    <a href="#issue">문제 인식</a>
+    <a href="#solution">해결 아이디어</a>
+    <a href="#health">보건학적 접근</a>
+    <a href="#action">참여 & 후원</a>
+  </nav>
+</header>
+
+<section class="main">
+  <div class="main-content">
+    <h2>HEAL THE EARTH,<br>HEAL OURSELVES</h2>
+    <p>환경이 건강해야 인간도 건강합니다.<br>
+       대기오염과 미세플라스틱으로부터 우리의 몸과 지구를 지키는 첫걸음.</p>
+    <button class="btn" onclick="scrollToSection('issue')">시작하기</button>
+  </div>
+</section>
+
+<section id="issue">
+  <div class="content-box">
+    <h3>🌫️ 환경 오염은 곧 건강의 문제입니다</h3>
+    <p>대기오염과 미세플라스틱은 인간의 폐, 순환계, 피부에 직접적인 영향을 미칩니다.
+       우리가 마시는 공기와 먹는 음식 속에는 이미 변화가 시작되고 있습니다.
+       이 변화는 지구의 신호이자, 우리의 몸이 보내는 경고입니다.</p>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="content-box">
+    <h3>💡 환경 데이터를 기반으로 한 건강 모니터링</h3>
+    <p>위치 기반 환경 데이터와 개인 건강 데이터를 연동하여 실시간으로 건강 위험을 알려주는 시스템입니다.</p>
+    <div class="data-board">
+      <div class="data-item">🌆 서울 강남구: 미세먼지 78 → 실외활동 자제</div>
+      <div class="data-item">🌿 부산: 대기질 양호 → 실내 환기 권장</div>
+      <div class="data-item">💧 제주: 습도 60% → 피부 수분 유지 좋음</div>
+    </div>
+    <button class="btn" onclick="alert('오늘은 실내 공기 관리가 필요한 날입니다!')">오늘의 건강 알림</button>
+  </div>
+</section>
+
+<section id="health">
+  <div class="content-box">
+    <h3>🧬 의학이 환경을 만나다</h3>
+    <p>보건학은 단지 병을 치료하는 학문이 아닙니다.<br>
+       오염된 환경을 치유하는 것 또한 건강을 지키는 첫걸음입니다.</p>
+    <div class="health-cards">
+      <div class="card"><b>환경보건학</b><br>대기오염 물질이 인체에 미치는 영향을 분석하고 대응방안을 마련합니다.</div>
+      <div class="card"><b>생리학</b><br>미세먼지와 미세플라스틱이 폐·피부·혈관에 미치는 영향을 이해합니다.</div>
+      <div class="card"><b>공중보건학</b><br>환경 변화에 따른 질병 확산을 예방하고 지역 건강을 지킵니다.</div>
+    </div>
+  </div>
+</section>
+
+<section id="action" class="action">
+  <h3>🌱 나의 작은 실천이 지구를 지킵니다</h3>
+  <p>하루의 작은 행동이 지구와 우리의 건강을 함께 바꿉니다.</p>
+  <div class="action-cards">
+    <div class="card">☕ 텀블러 사용하기</div>
+    <div class="card">🚴 대중교통 이용하기</div>
+    <div class="card">🌬 공기청정기 필터 관리</div>
+  </div>
+
+  <h3 style="margin-top:3rem;">💚 환경건강 프로젝트 후원하기</h3>
+  <p>당신의 후원이 더 깨끗한 지구와 건강한 사회를 만듭니다.</p>
+  <button class="btn" onclick="openDonate()">후원하기</button>
+</section>
+
+<footer>
+  © 2025 Heal the Earth Project | Designed for Environmental & Health Awareness
+</footer>
+
+<!-- 후원 모달 -->
+<div id="donateModal">
+  <div class="modal-content">
+    <h3>💚 환경 건강 프로젝트 후원하기</h3>
+    <p>후원 금액을 입력해주세요 (₩)</p>
+    <input type="number" id="donateAmount" placeholder="예: 5000"><br>
+    <button class="btn" style="margin-top:1rem;" onclick="donate()">후원하기</button><br>
+    <button class="btn" style="background:#ccc; color:#333; margin-top:0.5rem;" onclick="closeDonate()">닫기</button>
+  </div>
+</div>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function openDonate(){
+  document.getElementById('donateModal').style.display='flex';
+}
+function closeDonate(){
+  document.getElementById('donateModal').style.display='none';
+}
+function donate(){
+  const amount=document.getElementById('donateAmount').value;
+  if(amount && amount>0){
+    alert(`감사합니다! ₩${amount} 후원해주셨습니다 🌿`);
+    closeDonate();
+  }else{
+    alert('후원 금액을 입력해주세요.');
+  }
+}
+</script>
+</body>
+</html>
